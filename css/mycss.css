@@ -1,0 +1,19 @@
+.mylist{
+    text-indent: 20px;
+    font-size: 15px;
+    font-family: "Microsoft YaHei";
+}
+.myp{
+    text-indent: 20px;
+    font-size: 15px;
+    font-family: "Microsoft YaHei";
+}
+.myImg{
+    border: 0px solid darkgray;
+    width: auto;
+    height: auto;
+    text-align: center;
+}
+img{
+    margin: 2px ;
+}
