@@ -1,0 +1,76 @@
+body{
+    font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif !important;
+}
+/*首尾有圆角，其他没有*/
+.nav-list li a{
+    border: 1px solid #e5e5e5;
+    padding: 8px 14px;
+    margin: 0 0 -1px;
+}
+.nav-list li:first-child a{
+    border-radius: 6px 6px 0 0;
+}
+.nav-list li:last-child a{
+    border-radius: 0 0 6px 6px;
+}
+.nav-list{
+/*top: 100px;*/
+    position: fixed;
+    background-color: #fcf8e3;
+}
+/*箭头在右用float*/
+.glyphicon-chevron-right{
+    opacity: 0.25;
+    float: right;
+}
+
+@media (min-width: 1200px) {
+    #ex-navbar .nav-list{
+        width: 180px;
+    }
+}
+li.active a, li.active a:hover {
+    background-color: #08c;
+    color: #fff;
+}
+/*解决锚点定位后背navbar挡住的秘诀就在这*/
+section{
+    padding-top: 83px;
+}
+.thumbnail{
+    border: 0;
+}
+/*commuicate 中的表格*/
+tbody td{
+    font-size: 13px;
+    padding: 9px 32px;
+    border: 1px  solid #e1e1e1;
+}
+tbody tr:nth-child(odd){
+    background-color: #fcfcfc;
+    color: #666;
+}
+body tr:nth-child(even){
+    background-color: white;
+    color: #333;
+}
+table, .table{
+    width: 90%;
+    margin: auto;
+}
+/*正文淡绿色，用户体验会比较好，不上眼，否则太白了*/
+.section{
+    background-color: #C7EDCC;
+}
+/*这是二级导航，缩进*/
+.nav-list>li>ul>li>a{
+    padding-left: 20px;
+}
+.sec_level,.sec_level>a{
+    /*color: #8a6d3b;*/
+    background-color: #FBF5D5;
+}
+.third_level,.third_level>a{
+    /*color: #a94442;*/
+    background-color: #F9F0C1;
+}

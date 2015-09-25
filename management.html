@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- 目前最新的jquery是2.1.4, 但是scroll()只在jquery1.0.0 ~ 2.0.0可用，高版本就无效了！坑爹-->
+    <!--<script type="text/javascript" src="JS/jquery-1.11.0.min.js"></script>-->
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/index-extend.css" rel="stylesheet">
+    <script type="text/javascript">
+        $(document).ready(function () {
+//            navbar滚屏后缩小效果
+            $(window).scroll(function(){
+                var scrollH = $(this).scrollTop();
+                $("#test").text("scrollH:" + scrollH);
+                if(scrollH > 0){
+                    $(".navbar-header img").css({
+                        "height": "44px",
+                        "width" : "158px"
+                    });
+                    $(".navbar-menu>li>a").css({
+                        "padding" : "20px 10px 15px 10px"
+                    });
+                }
+                else{
+                    $(".navbar-header img").css({
+                        "height": "88px",
+                        "width" : "300px"
+                    });
+                    $(".navbar-menu>li>a").css({
+                        "padding" : "40px 10px 30px 10px"
+                    });
+                }
+            });
+//            navbar下划线效果,未免动画把这效果覆盖掉，动画中要重复设置
+            $("#nav-text-3").css("border-bottom", "2px solid");
+            $("#nav-text-3-3").css("border-left", "2px solid");
+            $("nav .navbar-menu>li").hover(function () {
+                $(this).animate({
+//                    设置字体也挺好看的 fontSize : "30px"
+//                    此处坑爹，就animate里没有border之类的方法，只有这种奇葩方法，更奇葩的是
+//                    要想出现下划线，就要设置solid，但动画中又不能设置，只能事先在css里设置好
+                    borderBottomWidth: "2px"
+                }, 200);
+            }, function () {
+                $(this).animate({
+                    borderBottomWidth: "0px"
+                }, 200, function () {
+                    $("#nav-text-3").css("border-bottom", "2px solid");
+                    $("#nav-text-3-3").css("border-left", "2px solid");
+                })
+            });
+        });
+    </script>
+
+    <title>微电子CAD研究所 电路与系统实验室</title>
+</head>
+<body data-spy="scroll" data-target="#ex-navbar">
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#">
+                    <img alt="Brand" src="./images/logohdu.jpg">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-top-collapse">
+                <ul class="navbar-menu nav navbar-right navbar-nav">
+                    <li id="nav-text-1"><a href="index.html">首页</a></li>
+                    <li id="nav-text-2"><a href="overview.html">概况</a></li>
+                    <li id="nav-text-3" class="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <a data-target="dropdown">团队</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="./reasearch_team.html">研究队伍</a></li>
+                            <li><a href="./talent.html">人才培养</a></li>
+                            <li><a href="./management.html">运行管理</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-text-4"><a href="./communicate.html">交流</a></li>
+                    <li id="nav-text-5"><a href="./share.html">共享</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+<div class="row container content">
+    <div class="col-md-3" id="ex-navbar">
+        <ul class="nav nav-list" data-spy="affix" data-offset-top="100">
+            <li class="active"><a href="#sec1">学术委员会评审制<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="#sec2">实验室主任负责制<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="#sec3">人事制度<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="#sec4">考核制度<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="#sec5">研究成果管理制度<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="#sec6">开放运行制度<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="#sec7">仪器管理制度<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="#sec8">社会资助和捐赠<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+        </ul>
+    </div>
+    <div class="col-md-8 section">
+        <h1>实验室制度</h1><hr/>
+        <section id="sec1">
+            <h2>一、学术委员会评审制</h2>
+            <div>
+                <p>实验室设立学术委员会是实验室的学术指导机构，其成员从国内外该领域的知名科学家中选聘组成。学术委员会主要负责审议实验室的目标、任务和研究方向，
+                    审议实验室的重大学术活动、年度工作，审批开放研究课题。学术委员会会由国内外优秀专家组成，人数不超过15人，其中依托单位的学术委员不超过总人数的三分之一 ，中青年学术委员不少于三分之一。</p>
+            </div>
+        </section>
+        <section id="sec2">
+            <h2>二、实验室主任负责制</h2>
+            <div>
+                <p>实验室实行依托单位领导下的主任负责制。实验室主任由学校推荐，教育部聘任。其依据管理暂行办法对实验室进行管理，定期召开主任会议研究工作， 制定政策，稳定实验室固定人员队伍，为各方面优秀人才来实验室工作创造良好的环境。</p>
+            </div>
+        </section>
+        <section id="sec3">
+            <h2>三、人事制度</h2>
+            <div>
+                <p>隶属于实验室的研究人员，如具备研究生指导资格，则享受学校下达的招生研究生名额。</p>
+                <p>研究人员在实验室工作期间所取得的研究成果均应署上重点实验室的名称。其工作业绩需以年度研究报告的形式提交给审核，以确定其工作量和贡献。</p>
+                <p>实验室实行试行下聘一级的人事制度，按需设岗，按岗聘任;其研究队伍由固定人员和流动人员组成，由实验室主任根据需要进行聘任，并逐步扩大固定人员对流动人员的比例。 实验室人员的聘任需由实验室主任或者各个方向学术带头人提名，经过严格的考察（包括学术水平、学术能力），方可聘任上岗。</p>
+            </div>
+        </section>
+        <section id="sec4">
+            <h2>四、考核制度</h2>
+            <div>
+                <p>实验室实行年考核管理制度，每年对实验室下属各研究室进行考核评分，并公布考核结果，对获得单项和综合考核第一的研究室给予一定物质奖励。考核指标：获奖情况；SCI论文数，要考虑影响因子；论文被引用情况；承担国家，省部级科研任务数，取得经费数；专利申请和获批准数，科研转化数；青年人才培养情况和培养研究生数量、质量；专管仪器对内，对外服务情况。</p>
+            </div>
+        </section>
+        <section id="sec5">
+            <h2>五、研究成果管理制度</h2>
+            <div>
+                <p>实验室办公室负责重点实验室研究成果（包括专著、论文、软件、数据库等）的汇总和整理，并以此为实验室研究人员考核的依据。 各研究方向应配合办公室做好研究成果汇总和整理。</p>
+            </div>
+        </section>
+        <section id="sec6">
+            <h2>六、开放运行制度</h2>
+            <div>
+                <p>重点实验室要根据研究需要，每年提供总额度不低于100万的经费，用于设置开放基金等经费开支。主要包括：</p>
+                <ul>
+                    <li>开放基金优先支持前沿性课题，跨学科课题，国际开放青年课题以及对国家和社会发展具有巨大促进作用的前沿性课题，对于项目所提出的科学问题
+                        ，覆盖学科群和交叉学科的建设，项目的研究成果能对实验室的建设起到突出贡献的课题，可以进行持续资助。
+                    </li>
+                    <li>
+                        凡以实验室名义申报的课题，须征得实验室同意方可进行，同时与实验室没有隶属关系的课题负责人可自然成为本实验室的客座人员，
+                        实验室为其开展研究提供相适应的研究条件。
+                    </li>
+                    <li>
+                        凡以实验室为第一单位发表的学术论文可向实验室管理机构提出申请，经实验室相关部门审核后，可由实验室一定的资助费用。
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section id="sec7">
+            <h2>七、仪器管理制度</h2>
+            <div>
+                <p>仪器设备实现专管共用，做到资源共享，对外开放；所有大型（10万以上）的仪器设备由专人管理，各方向根据需要共同使用（使用免费，消耗品自付）。所有大型设备的购置，要经过专家论证，并实行公开招标。</p>
+                <P>实验室拟制定《大型设备共享共用管理使用条例》，充分提高设备的使用效率。</P>
+                <P>实验室将积极培训实验技术人员，建立一支稳定高素质的实验技术人员，保证重点实验室设备仪器的高效运转。</P>
+            </div>
+        </section>
+        <section id="sec8">
+            <h2>八、社会资助和捐赠</h2>
+            <div>
+                <p>实验室接纳合理的社会资助和捐赠，包括研究经费、实验设备和其他方式。所获得的资助和捐赠必须列出详细的财务清单，并必须用于与本实验室研究方向与目标相一致的研究活动。
+                    作为对社会资助的回馈，实验室可以技术支持单位的身份，安排研究人员以技术顾问、总工程师、项目设计专家等身份指导其他单位的科研课题，也可通过设立联合实验室、专项基金、教育基金和人才培养基金等形式，帮助企业解决难题，培养人才。</p>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+<footer>
+    <div id="pre-footer">
+        <div class="container">
+            <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">地址：</h5>
+                        <a>杭州市杭州经济技术开发区白杨街道2号大街1号</a>
+                    </div>
+                </div>
+                <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">邮编：</h5>
+                        <a>310037</a>
+                    </div>
+                </div>
+                <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">电话：</h5>
+                        <a>0571-86919165</a>
+                    </div>
+                </div>
+            <div class="row footer-content">
+                <div class="col-md-3">
+                    <h5 class="footer-h5">友情链接</h5>
+                    <a href="http://elec.hdu.edu.cn/">杭州电子科技大学-电子信息学院</a>
+                </div>
+            </div>
+            <div class="row footer-content">
+                <div class="col-md-3">
+                    <h5 class="footer-h5">链接表</h5>
+                    <a href="http://webmail.hdu.edu.cn/">杭电邮箱登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p>© Copyright - <a href="#">杭州电子科技大学微电子CAD研究所 电路与系统实验室</a></p>
+    </div>
+</footer>
+</body>
+</html>

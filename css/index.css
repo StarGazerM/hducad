@@ -1,0 +1,164 @@
+/*导航栏logo的宽高,导航栏透明，但是图片不透明*/
+.navbar-header img {
+    height: 88px;
+    width: 316px;
+    opacity: 1;
+}
+
+/*导航栏图标不要padding*/
+.navbar-brand {
+    padding: 0px;
+}
+
+/*导航栏高度，无magin，导航栏透明好看*/
+.navbar {
+    margin: 0px;
+}
+
+/*navbar-fixed-top要求，body要用50上边距*/
+body {
+    padding-top: 50px;
+    font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif !important;
+}
+
+/*导航栏默认颜色*/
+.navbar-default {
+    background-color: white;
+}
+
+/*独特的navbar搞死我了，要设置很多东西*/
+.navbar-menu li {
+    height: 100%;
+}
+
+/*配合navbar里的下划线*/
+.navbar li{
+    border-bottom:  0px solid;
+}
+/*设置padding是为了垂直居中,margin-right是为了下划线变宽*/
+.navbar-menu >li >a {
+    height: 100%;
+    padding: 40px 10px 30px 10px;
+    margin-right: 10px;
+    font-family: 'Microsoft YaHei';
+    font-weight: 600;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        padding-right: 90px;
+        padding-left: 90px;
+        width: 100%;
+    }
+}
+
+h1, h2, h3, h4, {
+    font-weight: 600;
+    font-family: 'Microsoft YaHei';
+    margin-bottom: 22px;
+}
+h5 h6{
+    font-weight: 600;
+    font-family: 'Microsoft YaHei';
+}
+
+h3 {
+    font-size: 26px;
+}
+h4{
+    font-size: 23px;
+}
+p {
+    font-size: 16px;
+    font-family: 'Microsoft YaHei';
+    font-weight: 500;
+    /*首行缩进挺好~*/
+    text-indent: 20px;
+    margin: 0 0 15px;
+}
+
+.content {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#after_layer_slider_1{
+    background-color: white
+}
+/*有边框，更好看！*/
+#after_layer_slider_2 {
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    background-color: #dff0d8;
+}
+
+#after_layer_slider_3 {
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    background-color: #d9edf7;
+
+}
+
+#example5 *, #example5 {
+    box-sizing: content-box !important;
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: inherit !important;
+    -ms-box-sizing: inherit !important;
+}
+
+/*不会用bootstrap定制主题，只好强行修改栅格间距，不过这其实并不成功。。桑感*/
+.col-content {
+    margin: 30px 0 0 30px;
+}
+
+/*底部一大堆*/
+#pre-footer {
+    background-color: black;
+    border: 2px solid #e1e1e1;
+}
+
+.footer-h5 {
+    color: #919191;
+}
+
+.footer-content {
+    margin-bottom: 0px;
+}
+
+footer a, footer a:hover, footer a:visited {
+    color: white;
+}
+
+#pre-footer a, footer a, footer p {
+    font-size: 12px;
+}
+
+footer {
+    background-color: #333333;
+    color: #eeeeee;
+}
+
+footer .container {
+    padding: 15px 60px 15px 60px;
+}
+/*放在“团队”上出现手，但是点击后不会锚到顶端，更加贴心！*/
+.dropdown{
+    cursor: pointer;
+}
+/*神技!可以不用js就办到hover弹出下拉菜单栏效果*/
+.dropdown:hover .dropdown-menu{
+     display: block;
+ }
+/*left让弹出的菜单栏和“团队”对齐*/
+.dropdown .dropdown-menu{
+    left: 0;
+    padding: 0;
+}
+.dropdown .dropdown-menu>li>a{
+    padding: 8px 18px;
+    font-size: 14px;
+}
+/*列表有样式好丑！*/
+ul{
+    list-style-type: none;
+}

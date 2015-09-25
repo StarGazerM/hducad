@@ -1,0 +1,2406 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- 目前最新的jquery是2.1.4, 但是scroll()只在jquery1.0.0 ~ 2.0.0可用，高版本就无效了！坑爹-->
+    <!--<script type="text/javascript" src="JS/jquery-1.11.0.min.js"></script>-->
+    <!-- 经过测试发现，chrome链接外部引用的速度非常快，从来不失败，但是其他浏览器就不行，为了照顾其他浏览器用户，我把CDN换成百度的，然后其他浏览器就快了一些，坑爹-->
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/index-extend.css" rel="stylesheet">
+    <script type="text/javascript">
+        $(document).ready(function () {
+//            navbar滚屏后缩小效果
+            $(window).scroll(function(){
+                var scrollH = $(this).scrollTop();
+                $("#test").text("scrollH:" + scrollH);
+                if(scrollH > 0){
+                    $(".navbar-header img").css({
+                        "height": "44px",
+                        "width" : "158px"
+                    });
+                    $(".navbar-menu>li>a").css({
+                        "padding" : "20px 10px 15px 10px"
+                    });
+                }
+                else{
+                    $(".navbar-header img").css({
+                        "height": "88px",
+                        "width" : "300px"
+                    });
+                    $(".navbar-menu>li>a").css({
+                        "padding" : "40px 10px 30px 10px"
+                    });
+                }
+            });
+//            navbar下划线效果,未免动画把这效果覆盖掉，动画中要重复设置
+            $("#nav-text-3").css("border-bottom", "2px solid");
+            $("#nav-text-3-1").css("border-left", "2px solid");
+            $("nav li").hover(function () {
+                $(this).animate({
+//                    设置字体也挺好看的 fontSize : "30px"
+//                    此处坑爹，就animate里没有border之类的方法，只有这种奇葩方法，更奇葩的是
+//                    要想出现下划线，就要设置solid，但动画中又不能设置，只能事先在css里设置好
+                    borderBottomWidth: "2px"
+                }, 200);
+            }, function () {
+                $(this).animate({
+                    borderBottomWidth: "0px"
+                }, 200, function () {
+                    $("#nav-text-3").css("border-bottom", "2px solid");
+                    $("#nav-text-3-1").css("border-left", "2px solid");
+                })
+            });
+        });
+    </script>
+
+    <title>微电子CAD研究所 电路与系统实验室</title>
+</head>
+
+<body data-spy="scroll" data-target="#ex-navbar">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="#">
+                        <img alt="Brand" src="./images/logohdu.jpg">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse navbar-top-collapse">
+                    <ul class="navbar-menu nav navbar-right navbar-nav">
+                        <li id="nav-text-1"><a href="index.html">首页</a></li>
+                        <li id="nav-text-2"><a href="overview.html">概况</a></li>
+                        <li id="nav-text-3" class="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <a data-target="dropdown">团队</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="./reasearch_team.html">研究队伍</a></li>
+                                <li><a href="./talent.html">人才培养</a></li>
+                                <li><a href="./management.html">运行管理</a></li>
+                            </ul>
+                        </li>
+                        <li id="nav-text-4"><a href="./communicate.html">交流</a></li>
+                        <li id="nav-text-5"><a href="./share.html">共享</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <div class="row container content">
+        <div class="col-md-2" id="ex-navbar">
+            <ul class="nav nav-list" data-spy="affix" data-offset-top="100">
+                <li><a href="#s0">实验室主要人员<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                <li class="active"><a href="#s1">实验室人员名单<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                <li><a href="#s2">承担省部级项目一览<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                <li><a href="#s3">省部级获奖一览<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                <li><a href="#s4">发明专利一览<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                <li><a href="#s5">部分论文一览<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                <li><a href="#s6">建设计划情况概述<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                <li><a href="#s7">建设计划完成情况<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                <li><a href="#s8">实验室工作设想<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            </ul>
+        </div>
+
+
+        <div class="col-md-9 col-md-offset-1 section">
+            <!--主要人员-->
+            <section id="s0">
+                <h2>实验室现任负责人</h2>
+                <br>
+                <br>
+                <h4>重点实验室主任：孙玲玲，教授，博导</h4>
+                <img src="./images/sunlinlin.jpg">
+                <br>
+                <p>孙玲玲教授现任杭州电子科技大学副校长，为浙江省“电子科学与技术”重中之重一级学科负责人、“射频电路与系统”国防创新团队负责人、浙江省“智能识别关键技术与应用”重点科技创新团队带头人。主要从事射频/微波IC设计及CAD方向的研究，包括深亚微米EDA工具开发及互连建模技术研究、射频/微波IC电路及系统设计技术、射频/微波元器件建模建库技术、物联网等。主持国家自然科学基金重点及面上项目、973课题、863计划项目、国家攻关项目、国防预研、国防重点基金、国际合作、省科技计划重点项目等三十多项国家和省部级以上科研项目；已有20多项成果通过国家级和部、省级专家技术鉴定或验收，并荣获浙江省科技进步二等奖、国家教学成果一等奖、部攻关成果集体荣誉奖等省部科技奖励。在IEEE
+                    EDL/MTT等期刊上发表三大检索学术论文60余篇，授权专利和软著20余项，研发的EDA工具、建模建库技术、物联网智能终端产品在国防、科研院所和企业中得到应用。</p>
+                <p>孙玲玲教授是IEEE（MTT和CAS分会）高级会员、EDS/MTT杭州分会主席；曾任全国电子信息科学与工程类专业教学指导分委会委员；IFIP中国代表；中国电子学会学术工作委员会副主任委员，现任中国电子学会理事，中国电子学会微波分会委员、全国微波集成电路与移动通信专业委员会副主任委员；省半导体行业协会副理事长。电子学报、微波学报编委等。入选浙江省151人才工程第一层次并获省“新世纪151人才工程”重点资助；国务院政府特殊津贴获得者；浙江省十届、十一届、十二届人大代表。</p>
+                <br>
+                <br>
+
+                <h4>重点实验室副主任：王高峰，教授，博导 </h4>
+                <img src="./images/wanggaofeng.jpg">
+                <br>
+                <p>
+                    王高峰教授，男，浙江省特聘教授，浙江省特聘专家，国家杰出青年科学基金获得者。分别于1993年和2001年获得美国威斯康辛大学密尔沃基分校电工程博士学位和美国斯坦福大学科学计算博士学位。主要从事高频高速集成电路、微机电系统（MEMS）、电子设计自动化（EDA）、计算电磁学、微纳电子学、绿色能源电子等。
+                </p>
+                <p>
+                    王高峰教授承担的科研项目包括国家杰出青年科学基金项目、国家自然科学基金重大研究计划重点项目等。目前已在国内外发表科研论文270余篇（其中SCI收录102篇）。发明了新型MEMS热质量流量芯片并将其实用化，基于该新型MEMS芯片，共获得20余项已授权专利（其中美国专利13项），累计获得海外风险投资资金1000万美元。
+                </p>
+                <p>
+                    王高峰教授是2010年和2012年湖北省优秀博士论文指导老师，担任国家自然科学基金委信息学部半导体学科评审组专家，同时也是多个IEEE Transactions及John Wiley & Sons出版社审稿人。王高峰教授于2001年被选为IEEE资深会员（Senior Member），并于2005年入选（马奎斯）美国名人录、2006年入选（马奎斯）世界名人录和科学工程名人录。
+                </p>
+                <br>
+                <br>
+            
+                <h4>重点实验室副主任：刘军，博士，副研究员</h4>
+                <p>
+                    刘军博士，2001年获杭州电子工业学院电子工程专业学士学位，2006年3月获杭州电子科技大学电路与系统专业硕士学位，2011年获爱尔兰都柏林城市大学电子工程博士学位。主要从事微纳半导体器件测试和建模，以及RF/MMIC CAD研究工作。
+                </p>
+                <p>
+                    目前为杭州电子科技大学 “射频电路与系统” 教育部重点实验室副研究员，中国科学院上海高等研究院CIS实验室兼职副研究员，中国科学院上海微系统所信息功能材料室兼职副研究员，杭州矽力杰半导体技术有限公司Spice模型技术顾问，法国XMOD Tech.公司中国区首席技术顾问。曾任北京艾克赛利微电子技术有限公司RF Spice模型技术顾问（2010.1- 2010.12），支持公司于2012年成功被美国Agilent公司收购。
+                </p>
+                <p>
+                    刘军博士近年来主持/完成国家11-5、12-5国家科技重大专项01、02专项子课题/任务多项，国家自然科学基金、长三角科技计划联合攻关、国家微电子预先研究项目、国家重点实验室基金等10余项，授权国家发明专利多项，发表科技论文20余篇。曾浙江省科技奖二等奖、浙江省高等学校科研成果奖一等、二等、工信部国防科技进步三等奖等奖项多次。
+                </p>
+                
+                <h4>学术委员会主任：郝跃，教授，中国科学院院士</h4>
+                <img src="./images/haoyue.jpg">
+                <p>
+                    郝跃教授为中国科学院院士，西安电子科技大学副校长，微电子学与固体电子学博士生导师。1958年3月生于重庆市，1982年毕业于西安电子科技大学半导体物理与器件专业，1991年在西安交通大学计算数学专业获理学博士学位；他是国际IEEE高级会员，中国电子学会常务理事，陕西省科学技术协会副主席，陕西省电子学会理事长和陕西省半导体行业协会理事长。国家中长期规划纲要“核心电子器件、高端通用芯片和基础软件产品”科技重大专项专家组副组长，总装备部微电子技术专家组组长，国家电子信息科学与工程专业指导委员会副主任委员。他是第九、第十届全国政协委员和第十一届全国人大代表。2013年当选中国科学院院士。
+                </p>
+                <p>
+                    郝跃教授长期从事新型宽禁带半导体材料和器件、微纳米半导体器件与高可靠集成电路等方面的科学研究与人才培养，是国家重大基础研究(973)计划项目首席科学家和微电子技术领域的著名专家。他在氮化镓∕碳化硅第三代(宽禁带)半导体功能材料和微波器件、半导体照明短波长光电材料与器件研究和推广、微纳米CMOS器件可靠性与失效机理研究等方面取得了系统的创新成果。 主持的科研成果获得国家发明奖二等奖1项，国家科技进步二、三等奖各1项；省部级科技成果一、二等奖十余项；出版了“氮化物宽禁带半导体材料与电子器件”，“碳化硅宽带隙半导体技术”、“集成电路制造动力学理论与方法”和“微纳米CMOS器件可靠性与失效机理”等多部著作，2010年荣获“何梁何利”科学技术奖。
+                </p>
+                
+            </section>
+            <!--实验室名单-->
+            <section id="s1">
+                <h2>实验室人员名单</h2>
+                <br/>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr class="info">
+                            <td>研究方向</td>
+                            <td>序号</td>
+                            <td>姓名</td>
+                            <td>出生年月</td>
+                            <td>职称</td>
+                            <td>学历</td>
+                            <td>备注</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="12">RFIC设计及CAD技术研究</td>
+                            <td>1</td>
+                            <td>孙玲玲</td>
+                            <td>1956.06</td>
+                            <td>教授/博导</td>
+                            <td>硕士</td>
+                            <td>主 任</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>余志平</td>
+                            <td>1948.04</td>
+                            <td>教授/博导</td>
+                            <td>博士</td>
+                            <td>IEEE FELLOW 学科特聘研究员
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>郭裕顺</td>
+                            <td>1965.01</td>
+                            <td>教授</td>
+                            <td>硕士</td>
+                            <td>实验室副主任</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>王彬</td>
+                            <td>1976.05</td>
+                            <td>教授</td>
+                            <td>博士</td>
+                            <td>省千人计划</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>王光义</td>
+                            <td>1957.03</td>
+                            <td>教授/博导</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>刘军</td>
+                            <td>1977.09</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>文进才</td>
+                            <td>1980.02</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>洪慧</td>
+                            <td>1979.10</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>陈科明</td>
+                            <td>1978.11</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>高海军</td>
+                            <td>1981.07</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>周明珠</td>
+                            <td>1981.04</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>程瑜华</td>
+                            <td>1983.09</td>
+                            <td>讲师</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="12">射频集成新技术及系统集成研究</td>
+                            <td>13</td>
+                            <td>钱正洪</td>
+                            <td>1968.09</td>
+                            <td>教授/博导</td>
+                            <td>博士</td>
+                            <td>国家千人计划</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>罗国清</td>
+                            <td>1979.04</td>
+                            <td>教授/博导</td>
+                            <td>博士</td>
+                            <td>全国百优博、教育部新世纪优秀人才、省杰青</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>马琪</td>
+                            <td>1968.04</td>
+                            <td>教授</td>
+                            <td>博士</td>
+                            <td>省集成电路公共平台主任</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>程知群</td>
+                            <td>1964.03</td>
+                            <td>教授/博导</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>董林玺</td>
+                            <td>1976.01</td>
+                            <td>教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>李文钧</td>
+                            <td>1977.07</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>余厉阳</td>
+                            <td>1978.01</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>张海鹏</td>
+                            <td>1973.11</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>白茹</td>
+                            <td>1981.04</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>郑兴</td>
+                            <td>1983.04</td>
+                            <td>讲师</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>吕伟锋</td>
+                            <td>1978.09</td>
+                            <td>讲师</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>李竹</td>
+                            <td>1981.03</td>
+                            <td>讲师</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="16">射频系统应用技术研究</td>
+                            <td>25</td>
+                            <td>王高峰</td>
+                            <td>1967.07</td>
+                            <td>教授/博导</td>
+                            <td>博士</td>
+                            <td>国家杰青</td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>王健</td>
+                            <td>1970.01</td>
+                            <td>教授/博导</td>
+                            <td>博士</td>
+                            <td>国家千人计划（2011年调离）</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>刘敬彪</td>
+                            <td>1964.04</td>
+                            <td>教授/博导</td>
+                            <td>硕士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>赵治栋</td>
+                            <td>1976.12</td>
+                            <td>教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>张珣</td>
+                            <td>1970.01</td>
+                            <td>教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td>周磊</td>
+                            <td>1975.10</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td>高秀敏</td>
+                            <td>1978.02</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td>游彬</td>
+                            <td>1974.05</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td>李金新</td>
+                            <td>1963.10</td>
+                            <td>副教授</td>
+                            <td>硕士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                            <td>秦兴</td>
+                            <td>1975.05</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td>李训根</td>
+                            <td>1975.04</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>36</td>
+                            <td>冯涛</td>
+                            <td>1976.07</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                            <td>顾海涛</td>
+                            <td>1975.06</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>章雪挺</td>
+                            <td>1978.01</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>39</td>
+                            <td>蔡文郁</td>
+                            <td>1980.03</td>
+                            <td>副教授</td>
+                            <td>博士</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>盛庆华</td>
+                            <td>1978.01</td>
+                            <td>讲师</td>
+                            <td>硕士</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!--承担项目-->
+            <section id="s2">
+                <h2>实验室承担省部级项目一览表</h2>
+                <br/>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr class="info">
+                            <td>序号</td>
+                            <td>项目编号</td>
+                            <td>项目名称</td>
+                            <td>项目来源</td>
+                            <td>起止时间</td>
+                            <td>经费(万元)</td>
+                            <td>负责人</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2010CB327403</td>
+                            <td>毫米波亚毫米波频段硅基有源器件建模与电路设计方法研究</td>
+                            <td>国家973计划课题</td>
+                            <td>2010.01-2014.12</td>
+                            <td>520</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>61331006</td>
+                            <td>硅基太赫兹通信集成电路基础理论与关键技术</td>
+                            <td>国家自然科学基金重点项目</td>
+                            <td>2014.01-2018.12</td>
+                            <td>300</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>2009ZX02303-005</td>
+                            <td>0.18/0.13微米锗硅BiCMOS成套工艺技术—RFCMOS、电感和锗硅HBT版图设计和模型提取</td>
+                            <td>国家科技重大02专项子课题</td>
+                            <td>2009.01-2010.12</td>
+                            <td>200</td>
+                            <td>文进才</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>2009ZX02023-001-2</td>
+                            <td>65nm工艺建模和IP设计</td>
+                            <td>国家科技重大02专项子课题</td>
+                            <td>2009.06-2011.12</td>
+                            <td>200</td>
+                            <td>刘军</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>2010ZX03007-001-01</td>
+                            <td>高效节能的有源一体化天线</td>
+                            <td>国家科技重大03专项子课题</td>
+                            <td>2010.01-2011.12</td>
+                            <td>95</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>2010ZX03007-002-01</td>
+                            <td>面向ROF等新型组网技术的射频器件与模块</td>
+                            <td>国家科技重大03专项子课题</td>
+                            <td>2010.01-2011.12</td>
+                            <td>55.6</td>
+                            <td>游彬</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>2011ZX02509-001-01</td>
+                            <td>高压集成电路元器件建模</td>
+                            <td>国家科技重大03专项子课题</td>
+                            <td>2011.01-2013.12</td>
+                            <td>100</td>
+                            <td>李文钧</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>2006AA040310</td>
+                            <td>面向流程工业的排污在线检测技术与仪表</td>
+                            <td>国家863计划重点项目</td>
+                            <td>2006.12-2009.12</td>
+                            <td>250</td>
+                            <td>王健</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>2009AA01Z229</td>
+                            <td>小型化高增益宽带集成天线的研究</td>
+                            <td>国家863计划项目</td>
+                            <td>2009.02-2011.06</td>
+                            <td>92</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>2011AA090401</td>
+                            <td>冰架热水钻机关键技术与系统开发</td>
+                            <td>国家863计划项目</td>
+                            <td>2011.12-2015.11</td>
+                            <td>200</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>2010AA09Z206</td>
+                            <td>深海长距离大功率能源与图像信息混合传输技术研究</td>
+                            <td>国家863计划项目</td>
+                            <td>2011.01-2013.12</td>
+                            <td>237</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>2006AA09Z228</td>
+                            <td>深海长距离大功率能源与图像信息混合传输技术研究</td>
+                            <td>国家863计划项目</td>
+                            <td>2006.12-2009.12</td>
+                            <td>127</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>2011CBA00602</td>
+                            <td>新型存储器件及工艺基础研究</td>
+                            <td>国家973计划子课题</td>
+                            <td>2011.01-2015.12</td>
+                            <td>101.2</td>
+                            <td>钱正洪</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>2006AA09Z110</td>
+                            <td>多波束声纳用换能器及声基阵的研究</td>
+                            <td>国家863计划子项目</td>
+                            <td>2006.12-2009.12</td>
+                            <td>12</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>2010AA09Z204-2</td>
+                            <td>深海近底层生物幼体高保真直视取样技术--远程监控系统研制</td>
+                            <td>国家863计划子项目</td>
+                            <td>2011.01-2013.12</td>
+                            <td>40</td>
+                            <td>盛庆华</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>2006AA09Z239-2</td>
+                            <td>近海底磁力仪关键技术研究——深海磁力传感器及远程传输系统研制</td>
+                            <td>国家863计划子项目</td>
+                            <td>2007.01-2009.12</td>
+                            <td>35</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>2006AA09Z213-3</td>
+                            <td>深海近底层生物幼体高保真直视取样技术-数据采集传输与拖曳控制系统</td>
+                            <td>国家863计划子项目</td>
+                            <td>2007.01-2009.12</td>
+                            <td>21.5</td>
+                            <td>章雪挺</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>2006AA09Z241-3</td>
+                            <td>深海沉积物无扰动高保真直视取样技术－－远程监控系统研制</td>
+                            <td>国家863计划子项目</td>
+                            <td>2007.01-2009.12</td>
+                            <td>10</td>
+                            <td>刘纯虎</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>61372020</td>
+                            <td>毫米波亚毫米波集成天线设计方法与性能优化技术研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2014.01-2017.12</td>
+                            <td>80</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>61372021</td>
+                            <td>基于锁相、倍频及功率合成技术的CMOS单片集成太赫兹源研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2014.01-2017.12</td>
+                            <td>84</td>
+                            <td>高海军</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>61376117</td>
+                            <td>GHz频率机械耦合阵列组合的盘结构电容式微机械谐振器关键技术研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2014.01-2017.12</td>
+                            <td>81</td>
+                            <td>董林玺</td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>61378035</td>
+                            <td>自由空间中矢量光束弯曲传播行为及其可调控性研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2014.01-2017.12</td>
+                            <td>72</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>61372156</td>
+                            <td>CIS像素RTS噪声的时变物理统计建模与多维非均匀抑制方法研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2014.01-2017.12</td>
+                            <td>70</td>
+                            <td>张钰</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>61274029</td>
+                            <td>超低电压微型无线传感器供电集成电路研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2013.01-2016.12</td>
+                            <td>72</td>
+                            <td>邝小飞</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>61271064</td>
+                            <td>线性与非线性掺杂漂移Ti02忆阻器电路模型及仿真器研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2013.01-2016.12</td>
+                            <td>98</td>
+                            <td>王光义</td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>61072015</td>
+                            <td>金属氧化物ReRAM的稳定性和可靠性研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2011.01-2013.12</td>
+                            <td>38</td>
+                            <td>季振国</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>60971046</td>
+                            <td>数字混沌密码优化及其在存储介质密码系统中的实现研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2010.01-2012.12</td>
+                            <td>38</td>
+                            <td>王光义</td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>60871020</td>
+                            <td>新型非接触脉象检测及其信号特征点自动定位和多维分析</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2009.01-2011.12</td>
+                            <td>45</td>
+                            <td>张珣</td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>60776052</td>
+                            <td>GaN线性功率器件及大信号模型</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2008.01-2010.12</td>
+                            <td>30</td>
+                            <td>程知群</td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td>60672013</td>
+                            <td>基于模糊逻辑的电路与器件建模技术</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2007.01-2009.12</td>
+                            <td>26</td>
+                            <td>郭裕顺</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td>60471035</td>
+                            <td>新型半导体基带隙结构毫米波集成振荡器关键技术研究</td>
+                            <td>国家自然科学基金面上项目</td>
+                            <td>2005.01-2007.12</td>
+                            <td>22</td>
+                            <td>程知群</td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td>61306032</td>
+                            <td>植入式集成磁耦合谐振无线电能传输和电源管理研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2014.01-2016.12</td>
+                            <td>25</td>
+                            <td>程瑜华</td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td>61107025</td>
+                            <td>SOI基谐振腔增强型光电探测器结构、特性及模型研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2012.01-2014.12</td>
+                            <td>30</td>
+                            <td>洪慧</td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                            <td>61102133</td>
+                            <td>复杂环境下心音身份识别关键技术研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2012.01-2014.12</td>
+                            <td>25</td>
+                            <td>赵治栋</td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td>61102027</td>
+                            <td>基于传输线隔离寄生电容结构的宽带毫米波振荡器关键技术研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2012.01-2014.12</td>
+                            <td>24</td>
+                            <td>周明珠</td>
+                        </tr>
+                        <tr>
+                            <td>36</td>
+                            <td>61102067</td>
+                            <td>基于多尺度时空相关性的无线传感网自适应优化采样技术研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2012.01-2014.12</td>
+                            <td>25</td>
+                            <td>蔡文郁</td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                            <td>61001066</td>
+                            <td>基于传输线频率选择器的CMOS硅基毫米波压控振荡器研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2011.01-2013.12</td>
+                            <td>25</td>
+                            <td>高海军</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>60902040</td>
+                            <td>Rayleigh信道统计分析与建模</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2010.01-2012.12</td>
+                            <td>22</td>
+                            <td>冯涛</td>
+                        </tr>
+                        <tr>
+                            <td>39</td>
+                            <td>60906015</td>
+                            <td>可用于毫米波集成电路的硅基CMOS传输线结构及模型研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2010.01-2012.12</td>
+                            <td>22</td>
+                            <td>文进才</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>60801013</td>
+                            <td>高性能天线的小型化平面集成化关键技术研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2009.01-2011.12</td>
+                            <td>20</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>41</td>
+                            <td>60806011</td>
+                            <td>应用于RF-SOC的SOILDMOS器件优化设计与大信号模型研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2009.01-2011.12</td>
+                            <td>21</td>
+                            <td>李文钧</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>60706002</td>
+                            <td>可用于MOS-RFIC成品率设计的MOSFET模型</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2008.01-2010.12</td>
+                            <td>22</td>
+                            <td>刘军</td>
+                        </tr>
+                        <tr>
+                            <td>43</td>
+                            <td>60708002</td>
+                            <td>波前相位调控的聚焦光学性质研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2008.01-2010.12</td>
+                            <td>24</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>60601021</td>
+                            <td>基于缺陷地结构的预失真功率放大器的研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2007.01-2009.12</td>
+                            <td>22</td>
+                            <td>游彬</td>
+                        </tr>
+                        <tr>
+                            <td>45</td>
+                            <td>60506015</td>
+                            <td>高分辨率微机械电容式传感器及三轴惯性组合中的关键技术研究</td>
+                            <td>国家自然科学基金青年基金</td>
+                            <td>2006.01-2008.12</td>
+                            <td>24</td>
+                            <td>董林玺</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>60710306120</td>
+                            <td>国家自然科学基金国际(地区)合作交流项目(爱尔兰)</td>
+                            <td>国家自然科学基金国际合作项目</td>
+                            <td>2006.12-2007.12</td>
+                            <td>4</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>47</td>
+                            <td>61281230357</td>
+                            <td>中国-爱尔兰信息与通信技术及能源效率学术研讨会</td>
+                            <td>国家自然科学基金国际合作项目</td>
+                            <td>2012.07-2012.12</td>
+                            <td>12</td>
+                            <td>王光义</td>
+                        </tr>
+                        <tr>
+                            <td>48</td>
+                            <td>KYZ050509002</td>
+                            <td>****</td>
+                            <td>武器装备预研基金一般项目</td>
+                            <td>2009.03-2011.02</td>
+                            <td>20</td>
+                            <td>文进才</td>
+                        </tr>
+                        <tr>
+                            <td>49</td>
+                            <td>KYZ050506018</td>
+                            <td>****</td>
+                            <td>武器装备预研基金一般项目</td>
+                            <td>2006.06-2008.04</td>
+                            <td>20</td>
+                            <td>周磊</td>
+                        </tr>
+                        <tr>
+                            <td>50</td>
+                            <td>KYZ050411022</td>
+                            <td>****</td>
+                            <td>总参通信部</td>
+                            <td>2011.01-2015.12</td>
+                            <td>800</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>51</td>
+                            <td>KYZ050411021</td>
+                            <td>****</td>
+                            <td>总装备部</td>
+                            <td>2011.01-2015.12</td>
+                            <td>400</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>52</td>
+                            <td>KYZ050411020</td>
+                            <td>****</td>
+                            <td>总装备部</td>
+                            <td>2011.01-2015.12</td>
+                            <td>200</td>
+                            <td>刘军</td>
+                        </tr>
+                        <tr>
+                            <td>53</td>
+                            <td>KYZ050406006</td>
+                            <td>****</td>
+                            <td>总装备部</td>
+                            <td>2006.01-2010.12</td>
+                            <td>170</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>54</td>
+                            <td>KYZ050406005</td>
+                            <td>****</td>
+                            <td>总装备部</td>
+                            <td>2006.01-2010.12</td>
+                            <td>150</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>55</td>
+                            <td>KYZ050406004</td>
+                            <td>****</td>
+                            <td>总装备部</td>
+                            <td>2006.01-2010.12</td>
+                            <td>120</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>56</td>
+                            <td>*****</td>
+                            <td>国防科技创新团队</td>
+                            <td>*****</td>
+                            <td>2010.01-2011.12</td>
+                            <td>100</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>57</td>
+                            <td>KYZ050406012</td>
+                            <td>****</td>
+                            <td>总参通信部</td>
+                            <td>2006.01-2008.12</td>
+                            <td>75</td>
+                            <td>王光义</td>
+                        </tr>
+                        <tr>
+                            <td>58</td>
+                            <td>R1110003</td>
+                            <td>面向下一代高频高速无线通信的集成天线研究</td>
+                            <td>省杰青</td>
+                            <td>2011.01-2014.12</td>
+                            <td>35</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>59</td>
+                            <td>LZ12F01001</td>
+                            <td>实际忆阻器的电路模型和FPGA细胞模型及其应用研究</td>
+                            <td>省基金重点</td>
+                            <td>2012.01-2015.12</td>
+                            <td>32</td>
+                            <td>王光义</td>
+                        </tr>
+                        <tr>
+                            <td>60</td>
+                            <td>2012YQ17000408</td>
+                            <td>微纳图形化直写在腔增强痕量物质检测中的应用开发</td>
+                            <td>科技部</td>
+                            <td>2012.10-2016.09</td>
+                            <td>159</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>61</td>
+                            <td>200905025-4</td>
+                            <td>深海底原位观测及取样测量系统-卫星通讯与数据实时传输</td>
+                            <td>国家海洋局</td>
+                            <td>2009.10-2013.09</td>
+                            <td>336</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>62</td>
+                            <td>FANEDD-201045</td>
+                            <td>封装内集成与片上集成天线的研究</td>
+                            <td>教育部</td>
+                            <td>2010.01-2014.12</td>
+                            <td>66</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>63</td>
+                            <td>NCET-09-0910</td>
+                            <td>新型毫米波集成天线的研制</td>
+                            <td>教育部</td>
+                            <td>2010.01-2012.12</td>
+                            <td>50</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>64</td>
+                            <td>08515810103</td>
+                            <td>0.13um/90nm PSP基RF-MOSFET器件建模建库研究</td>
+                            <td>长三角科技计划攻关项目</td>
+                            <td>2008.11-2010.06</td>
+                            <td>100</td>
+                            <td>刘军</td>
+                        </tr>
+                        <tr>
+                            <td>65</td>
+                            <td>2008C16017</td>
+                            <td>高精度MOS RFIC元器件建模建库及RFIP开发技术研究</td>
+                            <td>长三角科技计划合作项目</td>
+                            <td>2008.06-2010.12</td>
+                            <td>230</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>66</td>
+                            <td>DYXM-115-03-09-01</td>
+                            <td>大洋深孔岩芯钻机系统研制</td>
+                            <td>中国大洋协会</td>
+                            <td>2008.06-2009.06</td>
+                            <td>80</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>67</td>
+                            <td>2010R50010</td>
+                            <td>智能识别关键技术与应用科技创新团队</td>
+                            <td>浙江省科技计划项目</td>
+                            <td>2011.07-2013.06</td>
+                            <td>300</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>68</td>
+                            <td>2011C13028-2</td>
+                            <td>用于微创手术的电控可弯曲超声刀器械的开发</td>
+                            <td>浙江省科技计划重大专项</td>
+                            <td>2011.01-2014.12</td>
+                            <td>160</td>
+                            <td>余厉阳</td>
+                        </tr>
+                        <tr>
+                            <td>69</td>
+                            <td>2011C11047</td>
+                            <td>巨磁阻纳米薄膜材料与集成传感器芯片</td>
+                            <td>浙江省科技计划重大专项</td>
+                            <td>2011.01-2013.12</td>
+                            <td>300</td>
+                            <td>钱正洪</td>
+                        </tr>
+                        <tr>
+                            <td>70</td>
+                            <td>2011C14022</td>
+                            <td>基于脱氧核酶水质重金属检测关键技术及应用研究</td>
+                            <td>浙江省科技计划重大专项</td>
+                            <td>2011.01-2012.12</td>
+                            <td>248</td>
+                            <td>王健</td>
+                        </tr>
+                        <tr>
+                            <td>71</td>
+                            <td>2010C11065</td>
+                            <td>嵌入式心音身份识别关键技术研究及装备研制</td>
+                            <td>浙江省科技计划重大专项</td>
+                            <td>2010.01-2012.06</td>
+                            <td>140</td>
+                            <td>赵治栋</td>
+                        </tr>
+                        <tr>
+                            <td>72</td>
+                            <td>2008C13056</td>
+                            <td>海洋波浪能定点垂直剖面自动监测系统</td>
+                            <td>浙江省科技计划重大专项</td>
+                            <td>2008.08-2010.12</td>
+                            <td>129</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>73</td>
+                            <td>2007C11069</td>
+                            <td>多业务光纤宽带接入关键SOC芯片的研究</td>
+                            <td>浙江省科技计划重大专项</td>
+                            <td>2007.07-2009.12</td>
+                            <td>54</td>
+                            <td>潘剑侠</td>
+                        </tr>
+                        <tr>
+                            <td>74</td>
+                            <td>2006C11106</td>
+                            <td>射频识别（RFID）关键技术及其典型应用系统</td>
+                            <td>浙江省科技计划项目</td>
+                            <td>2006.07-2008.12</td>
+                            <td>200</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!--获奖-->
+            <section id="s3">
+                <h2>实验室省部级获奖一览表</h2>
+                <br/>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr class="info">
+                            <td>序号</td>
+                            <td>成果名称</td>
+                            <td>完成人</td>
+                            <td>奖励种类</td>
+                            <td>获奖级别</td>
+                            <td>时间</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>原位抽取热湿法在线紫外/可见光纤光谱气体分析系统研制及产业化</td>
+                            <td>王健</td>
+                            <td>国家科技进步奖</td>
+                            <td>二等奖</td>
+                            <td>2009</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>深海浅地层岩芯取样钻机系列及其勘探工艺</td>
+                            <td>刘敬彪(排名第3)</td>
+                            <td>国家科技进步奖</td>
+                            <td>二等奖</td>
+                            <td>2007</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>水下长距离电能与视频同缆混合传输技术</td>
+                            <td>刘敬彪</td>
+                            <td>浙江省科学技术奖</td>
+                            <td>三等奖</td>
+                            <td>2012</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>光场分布可调控特性及其应用技术研究</td>
+                            <td>高秀敏</td>
+                            <td>浙江省科学技术奖</td>
+                            <td>三等奖</td>
+                            <td>2012</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>国产化多通道实时视频处理SoC芯片研发及产业链应用</td>
+                            <td>秦兴</td>
+                            <td>浙江省科学技术奖</td>
+                            <td>二等奖</td>
+                            <td>2011</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>新型在线水质分析系统研制与产业化</td>
+                            <td>王健</td>
+                            <td>浙江省科学技术奖</td>
+                            <td>二等奖</td>
+                            <td>2010</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>多通道语音和心音信号的自适应处理与无线传输技术及其应用研究</td>
+                            <td>赵治栋(排名第2)</td>
+                            <td>浙江省科学技术奖</td>
+                            <td>二等奖</td>
+                            <td>2009</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>紫外/可见光纤光谱在线过程分析系统</td>
+                            <td>王健</td>
+                            <td>浙江省科学技术奖</td>
+                            <td>一等奖</td>
+                            <td>2007</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>矢量激光光束的聚焦特性及其应用技术研究</td>
+                            <td>高秀敏</td>
+                            <td>电子信息科学技术奖</td>
+                            <td>三等奖</td>
+                            <td>2011</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>多通道高性能视频监控SoC芯片研发及产业化</td>
+                            <td>秦兴</td>
+                            <td>中国电子学会电子信息科学技术奖</td>
+                            <td>三等奖</td>
+                            <td>2010</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>新型在线水质分析系统研制与产业化</td>
+                            <td>王健</td>
+                            <td>环境保护科学技术奖</td>
+                            <td>二等奖</td>
+                            <td>2010</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>新型在线水质分析系统研制与产业化</td>
+                            <td>王健</td>
+                            <td>机械工业科学技术奖</td>
+                            <td>一等奖</td>
+                            <td>2010</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>深海浅地层岩芯取样钻机系列</td>
+                            <td>刘敬彪</td>
+                            <td>中国有色金属工业科技奖</td>
+                            <td>一等奖</td>
+                            <td>2007</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>射频集成电路元器件模型研究</td>
+                            <td>孙玲玲</td>
+                            <td>浙江省高等学校科研成果奖</td>
+                            <td>一等奖</td>
+                            <td>2007</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>集成SOI LIGBT/LDMOS器件关键技术研究与应用</td>
+                            <td>张海鹏</td>
+                            <td>浙江省科学技术奖</td>
+                            <td>三等奖</td>
+                            <td>2013</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!--专利-->
+            <section id="s4">
+                <h2>实验室发表专利一览表</h2>
+                <br/>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr class="info">
+                            <td>序号</td>
+                            <td>专利号</td>
+                            <td>授权日期</td>
+                            <td>申请人</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>ZL200610053869.8</td>
+                            <td>2008-07-30</td>
+                            <td>程知群</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>ZL200610050899.3</td>
+                            <td>2008-09-24</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>ZL200610050900.2</td>
+                            <td>2008-11-12</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>ZL200810060617.7</td>
+                            <td>2010-03-10</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>ZL200610154823.5</td>
+                            <td>2009-08-05</td>
+                            <td>程知群</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>ZL200710156827.1</td>
+                            <td>2009-08-05</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>ZL200810063675.5</td>
+                            <td>2010-06-09</td>
+                            <td>马琪</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>ZL200810168507.2</td>
+                            <td>2010-06-23</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>ZL200810061918.1</td>
+                            <td>2010-07-21</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>ZL200810060206.8</td>
+                            <td>2010-08-11</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>ZL200910095486.0</td>
+                            <td>2010-08-11</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>ZL200810063270.1</td>
+                            <td>2010-08-18</td>
+                            <td>章雪挺</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>ZL200810121882.1</td>
+                            <td>2010-08-25</td>
+                            <td>余厉阳</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>ZL200810120198.1</td>
+                            <td>2010-09-08</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>ZL200910100385.8</td>
+                            <td>2010-09-29</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>ZL200810122104.4</td>
+                            <td>2010-09-29</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>ZL200810061919.6</td>
+                            <td>2010-10-13</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>ZL200910100977.X</td>
+                            <td>2010-10-27</td>
+                            <td>程知群</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>ZL200910100615.0</td>
+                            <td>2011-02-02</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>ZL200910095487.5</td>
+                            <td>2011-04-13</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>ZL200910097495.3</td>
+                            <td>2011-05-11</td>
+                            <td>董林玺</td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>ZL200810162157.9</td>
+                            <td>2011-05-11</td>
+                            <td>陈科明</td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>ZL200910095862.6</td>
+                            <td>2011-06-15</td>
+                            <td>董林玺</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>ZL200910101082.8</td>
+                            <td>2011-07-20</td>
+                            <td>官伯然</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>ZL200810061917.7</td>
+                            <td>2011-08-24</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>ZL200710156826.7</td>
+                            <td>2011-08-24</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>ZL201010197517.6</td>
+                            <td>2011-08-31</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>ZL200910155798.6</td>
+                            <td>2011-09-07</td>
+                            <td>孔庆鹏</td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>ZL200710156821.4</td>
+                            <td>2011-09-07</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td>ZL200710156689.7</td>
+                            <td>2011-10-05</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td>ZL200710156823.3</td>
+                            <td>2011-10-05</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td>ZL200710156688.2</td>
+                            <td>2011-10-05</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td>ZL200710156824.8</td>
+                            <td>2011-10-05</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                            <td>ZL200710156822.9</td>
+                            <td>2011-10-05</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td>ZL201010197471.8</td>
+                            <td>2011-11-16</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>36</td>
+                            <td>ZL201010136068.4</td>
+                            <td>2011-11-30</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                            <td>ZL201010125444.x</td>
+                            <td>2011-12-21</td>
+                            <td>董林玺</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>ZL201010125451.x</td>
+                            <td>2012-01-11</td>
+                            <td>董林玺</td>
+                        </tr>
+                        <tr>
+                            <td>39</td>
+                            <td>ZL201110030680.8</td>
+                            <td>2012-04-18</td>
+                            <td>董林玺</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>ZL201010225915.4</td>
+                            <td>2012-04-18</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>41</td>
+                            <td>ZL201010225913.5</td>
+                            <td>2012-05-23</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>ZL201110056314.X</td>
+                            <td>2012-05-23</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>43</td>
+                            <td>ZL201010143627.4</td>
+                            <td>2012-06-06</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>ZL200710156825.2</td>
+                            <td>2012-06-20</td>
+                            <td>罗国清</td>
+                        </tr>
+                        <tr>
+                            <td>45</td>
+                            <td>ZL201110051873.10</td>
+                            <td>2012-07-04</td>
+                            <td>刘军</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>ZL201110056339.X</td>
+                            <td>2012-07-04</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>47</td>
+                            <td>ZL201010617144.3</td>
+                            <td>2012-07-18</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>48</td>
+                            <td>ZL201010193122.9</td>
+                            <td>2012-07-25</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>49</td>
+                            <td>ZL201010251442.5</td>
+                            <td>2012-08-15</td>
+                            <td>钱正洪</td>
+                        </tr>
+                        <tr>
+                            <td>50</td>
+                            <td>ZL201110056312.0</td>
+                            <td>2012-09-05</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>51</td>
+                            <td>ZL200910152729.X</td>
+                            <td>2012-10-03</td>
+                            <td>陈科明</td>
+                        </tr>
+                        <tr>
+                            <td>52</td>
+                            <td>ZL201110297521.4</td>
+                            <td>2013-03-27</td>
+                            <td>高海军</td>
+                        </tr>
+                        <tr>
+                            <td>53</td>
+                            <td>ZL201110312781.4</td>
+                            <td>2013-05-22</td>
+                            <td>赵治栋</td>
+                        </tr>
+                        <tr>
+                            <td>54</td>
+                            <td>ZL201110111700.4</td>
+                            <td>2012-12-05</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>55</td>
+                            <td>ZL201110111698.0</td>
+                            <td>2012-12-05</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>56</td>
+                            <td>ZL201110056312.0</td>
+                            <td>2012-09-05</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>57</td>
+                            <td>ZL201110051873.1</td>
+                            <td>2012-07-04</td>
+                            <td>刘军</td>
+                        </tr>
+                        <tr>
+                            <td>58</td>
+                            <td>ZL201110024319.4</td>
+                            <td>2012-11-07</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>59</td>
+                            <td>ZL201010606032.8</td>
+                            <td>2012-11-07</td>
+                            <td>孙玲玲</td>
+                        </tr>
+                        <tr>
+                            <td>60</td>
+                            <td>ZL201110001092.1</td>
+                            <td>2012-12-05</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>61</td>
+                            <td>ZL201010617144.3</td>
+                            <td>2012-07-18</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>62</td>
+                            <td>ZL201010251442.5</td>
+                            <td>2012-08-15</td>
+                            <td>钱正洪</td>
+                        </tr>
+                        <tr>
+                            <td>63</td>
+                            <td>ZL201010251446.3</td>
+                            <td>2012-11-21</td>
+                            <td>钱正洪</td>
+                        </tr>
+                        <tr>
+                            <td>64</td>
+                            <td>ZL201010225913.5</td>
+                            <td>2012-05-23</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>65</td>
+                            <td>ZL201010225915.4</td>
+                            <td>2012-04-18</td>
+                            <td>高秀敏</td>
+                        </tr>
+                        <tr>
+                            <td>66</td>
+                            <td>ZL201010193122.9</td>
+                            <td>2012-07-25</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>67</td>
+                            <td>ZL201010143627.4</td>
+                            <td>2012-06-06</td>
+                            <td>刘敬彪</td>
+                        </tr>
+                        <tr>
+                            <td>68</td>
+                            <td>ZL201010125451.x</td>
+                            <td>2012-01-11</td>
+                            <td>董林玺</td>
+                        </tr>
+                        <tr>
+                            <td>69</td>
+                            <td>ZL201110056314.X</td>
+                            <td>2012-05-23</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>70</td>
+                            <td>ZL200910152729.X</td>
+                            <td>2012-10-03</td>
+                            <td>陈科明</td>
+                        </tr>
+                        <tr>
+                            <td>71</td>
+                            <td>ZL201110056340.2</td>
+                            <td>2012-12-05</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>72</td>
+                            <td>ZL201110056336.6</td>
+                            <td>2013-01-02</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>73</td>
+                            <td>ZL201110056347.4</td>
+                            <td>2012-12-05</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>74</td>
+                            <td>ZL201110056339.X</td>
+                            <td>2012-07-04</td>
+                            <td>张海鹏</td>
+                        </tr>
+                        <tr>
+                            <td>75</td>
+                            <td>ZL201110030680.8</td>
+                            <td>2012-04-18</td>
+                            <td>董林玺</td>
+                        </tr>
+                        <tr>
+                            <td>76</td>
+                            <td>ZL200710156825.2</td>
+                            <td>2012-06-20</td>
+                            <td>罗国清</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!--论文-->
+            <section id="s5">
+                <h2>五、实验室部分论文一览表</h2>
+                <br/>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr class="info">
+                            <td>序号</td>
+                            <td>文章名称</td>
+                            <td>作者</td>
+                            <td>刊物名称</td>
+                            <td>发表日期</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Transfer function analysis and broadband scalable model for on-chip spiral inductors</td>
+                            <td>王皇、孙玲玲</td>
+                            <td>IEEE Transactions on Microwave Theory and Techniques</td>
+                            <td>2011.07</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>An Accurate Compact Model for On-Chip Vertically-Coiled Transformers</td>
+                            <td>刘军、孙玲玲</td>
+                            <td>IEEE Electron Device Letters</td>
+                            <td>2013.04</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>A Simple Test Structure for Directly Extracting Substrate Network Components in Deep n-Well RF
+                                CMOS Modeling
+                            </td>
+                            <td>刘军、孙玲玲</td>
+                            <td>IEEE Electron Device Letters</td>
+                            <td>2009.11</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Bandwidth enhanced low profile cavity backed slot antenna by using hybrid SIW cavity modes</td>
+                            <td>罗国清</td>
+                            <td>IEEE Transactions on Antennas and Propagation</td>
+                            <td>2012.04</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Design and Experimental Verification of Compact Frequency Selective Surface with Quasi-Elliptic
+                                Bandpass Response
+                            </td>
+                            <td>罗国清</td>
+                            <td>IEEE Transactions on Microwave Theory and Techniques</td>
+                            <td>2007.12</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Pulse swallow frequency divider with idle DFFs automatically powered off</td>
+                            <td>高海军</td>
+                            <td>Electronics Letters</td>
+                            <td>2012.05</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Dark focal spot shaping of hyperbolic-cosine-Gaussian beam</td>
+                            <td>高秀敏</td>
+                            <td>Journal of the Society of America B-Optical Physics</td>
+                            <td>2010.04</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Focusing properties of spirally polarized hollow Gaussian beam</td>
+                            <td>高秀敏</td>
+                            <td>Optical and Quantum Electronics</td>
+                            <td>2011.12</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Heart Sound Biometric System Based on Marginal Spectrum Analysis</td>
+                            <td>赵治栋</td>
+                            <td>Sensors</td>
+                            <td>2013.02</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>A Human ECG Identification System Based on Ensemble Empirical Mode Decomposition</td>
+                            <td>赵治栋</td>
+                            <td>Sensors</td>
+                            <td>2013.05</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Spirally polarized axisymmetric Bessel-modulated Gaussian beam</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2011.03</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Focusing of radially polarized beam with radial cosine phase wavefront</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2010.1</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>Concentric piecewise azimuthally polarized beam by a pure phase plate</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2010.1</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Planar Slot Antenna Backed By Substrate Integrated Waveguide Cavity</td>
+                            <td>罗国清</td>
+                            <td>IEEE Antennas and Wireless Propagation Letters</td>
+                            <td>2008.08</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Effective Anisotropy Field in the Free Layer of Patterned Spin-Valve Resistors</td>
+                            <td>钱正洪</td>
+                            <td>Journal of Applied Physics</td>
+                            <td>2011.05</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>Triband Frequency Selective Surface With Periodic Cell Perturbation</td>
+                            <td>罗国清</td>
+                            <td>IEEE Microwave and Wireless Cmoponets Letters</td>
+                            <td>2007.06</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>Robust high-high frequency sub-band for demosaicking the inter-channel weak correlated CFA image</td>
+                            <td>张钰</td>
+                            <td>Signal Processing</td>
+                            <td>2013.01</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>Novel color demosaicking for noisy color filter array data</td>
+                            <td>张钰</td>
+                            <td>Signal Processing</td>
+                            <td>2012.02</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>Correlation of inter-channel high-frequency components in demosaicking weak correlated CFA data</td>
+                            <td>张钰</td>
+                            <td>Electronics Letters</td>
+                            <td>2011.1</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>A simple method for generating inhomogeneously polarized vector beam</td>
+                            <td>高秀敏</td>
+                            <td>Optics and Lasers in Engineering</td>
+                            <td>2011.07</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>Focal patterns of higher order hyperbolic-cosine-Gaussian beam with one optical vortex</td>
+                            <td>高秀敏</td>
+                            <td>Optical and Quantum Electronics</td>
+                            <td>2011.06</td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>Cylindrical vector axisymmetric Bessel-modulated Gaussian beam</td>
+                            <td>高秀敏</td>
+                            <td>Optical and Quantum Electronics</td>
+                            <td>2009.03</td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>Effect of composited-layer AlyGa1-yN on performances of AlGaN/GaN HEMT with unintentionally doping
+                                barrier AlXGa1-xN
+                            </td>
+                            <td>程知群</td>
+                            <td>Microwave and Optical Technology Letters</td>
+                            <td>2011.06</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>Single Probe Fed Cavity Backed Circularly Polarized Antenna</td>
+                            <td>罗国清</td>
+                            <td>Microwave and Optical Technology Letters</td>
+                            <td>2008.08</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>A Fractional-N PLL with Small Kvco Wideband LC-VCO and Current matching CP for M-DTV Systems</td>
+                            <td>高海军</td>
+                            <td>International Journal of Electronics</td>
+                            <td>2011.06</td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>A Gain Enhanced Cavity Backed Slot Antenna Using High Order Cavity Resonance</td>
+                            <td>罗国清</td>
+                            <td>Journal of Electromagnetics Waves and Applications</td>
+                            <td>2011.06</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>Focus shaping of Bessel–Gauss beam with radial varying polarization</td>
+                            <td>高秀敏</td>
+                            <td>Optica Applicata</td>
+                            <td>2012.06</td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                            <td>Conditions for tighter focusing and higher focal depth of radially polarized vector beam</td>
+                            <td>高秀敏</td>
+                            <td>Optica Applicata</td>
+                            <td>2012.01</td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>High focusing of radially polarized Bessel-modulated Gaussian beam</td>
+                            <td>高秀敏</td>
+                            <td>Optica Applicata</td>
+                            <td>2010.04</td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                            <td>A reconfigurable cavity backed antenna for circular polarization diversity</td>
+                            <td>罗国清</td>
+                            <td>MIC Microwave and Optical Technology Letters</td>
+                            <td>2009.03</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td>Multilayer Frequency Selective Surface with Grating Lobe Suppression</td>
+                            <td>罗国清</td>
+                            <td>Microwave and Optical Technology Letters</td>
+                            <td>2007.1</td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td>Frequency-selective surfaces with Two Sharp Sidebands realized by Cascading and Shunting Substrate
+                                Integrated Waveguide Cavities
+                            </td>
+                            <td>罗国清</td>
+                            <td>IET Microwave, Antennas and Propagation</td>
+                            <td>2008.02</td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                            <td>Substrate Integrated Waveguide Fed Cavity BackedSlot Antenna for Circularly Polarized Application</td>
+                            <td>张晓红</td>
+                            <td>International Journal of Antennas and Propagation</td>
+                            <td>2013.05</td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                            <td>Extension of Reflectance and Transmission Coefficient Matrix to C-method for study of periodic
+                                multilayer system
+                            </td>
+                            <td>郭凌伟</td>
+                            <td>OPTIK</td>
+                            <td>2013.09</td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                            <td>Radially polarized hyperbolic-cosine-Gaussian beam</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2010.04</td>
+                        </tr>
+                        <tr>
+                            <td>36</td>
+                            <td>Focal shift of three-portion concentric piecewise cylindrical vector beam</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2009.06</td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                            <td>Dark focal spot shaping of hyperbolic-cosine-Gaussian beam</td>
+                            <td>高秀敏</td>
+                            <td>JOURNAL of the Society of America B-Optical Physics</td>
+                            <td>2010.04</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                            <td>Extraction and Tracking Moving Objects in Detail Considering Visual Feature Constraint and Structure
+                                Constraint
+                            </td>
+                            <td>李竹</td>
+                            <td>IEICE Transactions on Information Systems</td>
+                            <td>2013.05</td>
+                        </tr>
+                        <tr>
+                            <td>39</td>
+                            <td>Improved optical orthogonal frequency-division multiplexing performance using non-linear signal
+                                compression in intensity modulation and direct detection transmission systems incorporating
+                                parameter-relaxed digital-to-analogue converters/analogue-to-digital converters
+                            </td>
+                            <td>郑兴</td>
+                            <td>IET Optoelectronics</td>
+                            <td>2013.04</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>Novel model of AlGaN/GaN high electron mobility transistor based on artificial neural network</td>
+                            <td>程知群</td>
+                            <td>Chinses Physics B</td>
+                            <td>2011.01</td>
+                        </tr>
+                        <tr>
+                            <td>41</td>
+                            <td>Focusing of hyperbolic-cosine-Gaussian beam with a non-spiral vortex</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2009.02</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>Focusing properties of concentric piecewise cylindrical vector beam</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2007.06</td>
+                        </tr>
+                        <tr>
+                            <td>43</td>
+                            <td>Cavity backed dual slot antenna for gain improvement</td>
+                            <td>李金新</td>
+                            <td>Microwave and Optical Technology Letters</td>
+                            <td>2010.12</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                            <td>A new Rosslor hyperchaotic system and its realization with systematic circuit parameter design</td>
+                            <td>王光义</td>
+                            <td>Chinses Physics B</td>
+                            <td>2008.11</td>
+                        </tr>
+                        <tr>
+                            <td>45</td>
+                            <td>Design and FPGA Implementation of a new hyperchaotic system</td>
+                            <td>王光义</td>
+                            <td>Chinese Physics B</td>
+                            <td>2008.1</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                            <td>united gauss-pearson-4 distribution model of ions implanted into silicon</td>
+                            <td>张海鹏</td>
+                            <td>Solid State Inoics</td>
+                            <td>2008.09</td>
+                        </tr>
+                        <tr>
+                            <td>47</td>
+                            <td>Tunable optical trap induced by focal shift and focal switch in a focusing apodized optical system</td>
+                            <td>高秀敏</td>
+                            <td>BMEI 2008</td>
+                            <td>2008.05</td>
+                        </tr>
+                        <tr>
+                            <td>48</td>
+                            <td>Subwavelength dark hollow focus of spirally polarized axisymmetric Bessel-modulated Gaussian
+                                beam</td>
+                            <td>高秀敏</td>
+                            <td>Europan Physical Journal D</td>
+                            <td>2011.09</td>
+                        </tr>
+                        <tr>
+                            <td>49</td>
+                            <td>Optimization design of high linearity AlxGa1-xN/AlyGa1-yN/GaN high electron mobility transistor</td>
+                            <td>程知群</td>
+                            <td>物理学报</td>
+                            <td>2010.02</td>
+                        </tr>
+                        <tr>
+                            <td>50</td>
+                            <td>Focal shift of cylindrical vector axisymmetric Bessel-modulated Gaussian beam with radial variance
+                                phase wavefront
+                            </td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2011.12</td>
+                        </tr>
+                        <tr>
+                            <td>51</td>
+                            <td>A novel ternary JK flip-flop using the resonant tunneling diode literal circuit</td>
+                            <td>林弥</td>
+                            <td>Journal of Zhejiang University-SCIENCE C</td>
+                            <td>2012.12</td>
+                        </tr>
+                        <tr>
+                            <td>52</td>
+                            <td>Impact of the Gate Width of Al0.27Ga0.73N/AlN/Al0.04Ga0.96N/GaN HEMT on Its Characteristics</td>
+                            <td>程知群</td>
+                            <td>International Journal of Antennas and Propagation</td>
+                            <td>2013.03</td>
+                        </tr>
+                        <tr>
+                            <td>53</td>
+                            <td>Focal shift in radially polarized hollow Gaussian beam</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2011.04</td>
+                        </tr>
+                        <tr>
+                            <td>54</td>
+                            <td>Study of a Novel MEMS Accelerometer with Low Noise Reduced by Actuators</td>
+                            <td>董林玺</td>
+                            <td>Integrated Ferroelectrics</td>
+                            <td>2013.01</td>
+                        </tr>
+                        <tr>
+                            <td>55</td>
+                            <td>An efficient PSP-based model for optimized cross-coupled MOSFETs in voltage controlled oscillator</td>
+                            <td>楼立恒、孙玲玲</td>
+                            <td>Journal of Zhejiang University-SCIENCE C</td>
+                            <td>2013.06</td>
+                        </tr>
+                        <tr>
+                            <td>56</td>
+                            <td>A T-junction power divider FED circularly polarized cavity backed slot antenna</td>
+                            <td>罗国清</td>
+                            <td>Microwave and Optical Technology Letters</td>
+                            <td>2012.01</td>
+                        </tr>
+                        <tr>
+                            <td>57</td>
+                            <td>Experimental generation of tunable star-shape laser beam from Gaussian beam</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2013.05</td>
+                        </tr>
+                        <tr>
+                            <td>58</td>
+                            <td>Experimental observation of tangent-azimuthal non-spiral optical vortex</td>
+                            <td>高秀敏</td>
+                            <td>OPTIK</td>
+                            <td>2012.01</td>
+                        </tr>
+                        <tr>
+                            <td>59</td>
+                            <td>Tunable gradient force of hyperbolic-cosine-Gaussian beam with vortices</td>
+                            <td>高秀敏</td>
+                            <td>Optics and Lasers in Engineering</td>
+                            <td>2010.07</td>
+                        </tr>
+                        <tr>
+                            <td>60</td>
+                            <td>Flip-chip integrated oscillator with reduced phase noise and enhanced output power by using DGS</td>
+                            <td>程知群</td>
+                            <td>红外与毫米波学报</td>
+                            <td>2008.12</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!-- 完成情况概述-->
+            <section id="s6">
+                <h2>六、实验室建设计划执行情况概述</h2>
+                <p>重点实验室从立项建设以来，在科学研究、高端人才培养、实验平台构建、服务地方、支持国防建设、学科建设等方面取得了长足进展，超额完成各项建设任务。</p>
+                <p> 1、在科学研究方面：承担省部级以上项目74项，其中973、863、国家重大专项等17项（973课题1项、973子课题2项、国家重大专项01/02/03专项子课题5项），国防项目10项；国家自然科学基金30项（国家自然科学基金重点项目1项），其他省部级项目17项；总经费约9800万元；获国家科技进步二等奖2项（1项参与），省部级科技奖13项；发表SCI收录论文70余篇；授权发明专利76项。</p>
+                <p> 2、在人才队伍建设和培养方面：形成了一支包括IEEE Fellow、中组部千人计划入选者（2人）、国务院特殊津贴获得者、国家杰青、教育部优秀人才计划、浙江省特聘教授、钱江特聘专家等一批学术骨干在内的结构合理富有活力的人才队伍。2013年引进国家杰青王高峰教授，2012年聘任千人计划入选者杨旸博士为杭州电子科技大学讲座教授，引进钱正洪教授并入选国家千人计划，2011年王彬、钱正洪入选省千人计划；新增省特聘教授2人、新增省151第一层次2人、省杰青1人；罗国清等3人晋升为教授，文进才等16位晋升为副教授；培养硕士、博士毕业生300余名。以此为基础申报成功浙江省“智能识别关键技术与应用”重点科技创新团队（2010年）”和“射频电路与系统”国防创新团队。获国家教学成果二等奖1项及省教学成果一、二等奖4项，培养的研究生国家科技进步奖等奖项，获浙江省优秀硕士论文2篇。</p>
+                <p> 3、在射频技术试验平台构建方面：建设期内购置各类仪器设备1500余万元；2009年入选浙江省集成电路设计公共服务平台。</p>
+                <p> 4、在产学研、服务地方方面：通过项目合作直接帮助企业解决关键问题新增横向项目20余项；通过产学研项目，推动企业发展，视频解码SoC芯片与大华科技合作、推动安防产业核心芯片国产化；巨磁阻传感器及芯片与中船重工合作、技术指标达到国防标准一级/突破国外垄断。</p>
+                <p> 5、在支持国防建设方面：承担国防973子课题1项、预研项目6项、国防基金3项、国防创新团队1项。</p>
+                <p> 6、支持学校学科建设方面：以重点实验建设为契机，提升学科整体实力；其支撑的电子科学与技术学科在2009年被确立为博士点建设学科、2013年通过教育部验收，2013又被批准成为浙江省重中之重一级学科。</p>
+            </section>
+            <!-- 完成情况汇报-->
+            <section id="s7">
+                <h2>七、实验室建设计划任务完成情况汇报</h2>
+                <br/>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr class="info">
+                            <td>序号</td>
+                            <td colspan="2">建设任务</td>
+                            <td>预期目标</td>
+                            <td>完成情况</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td colspan="2">研究方向</td>
+                            <td>在科学研究方面，各方向的研究水平总体达到国内领先、并在国际上有一定影响。</td>
+                            <td>在射频集成电路、THz、集成化天线、磁性传感器等领域的研究特色明显，达到国内领先，国际上有一定的影响。</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">2</td>
+                            <td rowspan="2">科研水平</td>
+                            <td>承担国家重大科研任务</td>
+                            <td>各类国家级科研项目7项以上； 973、863、国家自然科学基金及杰出青年/重点/重大项目/国防预研项目5项以上； 省部级重点科研项目10项以上； 科研总经费达到600万以上。 国内外重要学术期刊上发表三大收录论文40-50篇；
+                                申请发明专利5-8项以上。
+                            </td>
+                            <td>各类国家级科研项目77项；973、863、国家重大专项17项； 国防项目10项；国家自然科学基金30项；省部级重点科研项目17项；科研总经费达到9800余万； SCI收录论文70余篇；授权发明专利76项。
+                                超额完成。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>科研奖励</td>
+                            <td>获得国家级科技奖励及省部级科技奖1-2项。</td>
+                            <td>获国家科技进步二等奖2项（1项参与），省部级科技奖13项。 超额完成。
+                            </td>
+                        </tr>
+                        <tr>
+                            <tr>
+                                <td rowspan="2">3</td>
+                                <td rowspan="2">人才队伍</td>
+                                <td>高层次人才培养与引进</td>
+                                <td>培养或引进2-3省部级以上中青年学科带头人</td>
+                                <td>中组部“千人计划”2人，国家杰青1人，浙江省特级专家1人，教育部新世纪优秀人才支持计划1人，省中青年学科带头人2人。超额完成</td>
+                            </tr>
+                            <tr>
+                                <td>研究生培养</td>
+                                <td></td>
+                                <td>硕士研究生年招生150余人；建设期内累计毕业硕士研究生300余人；目前在读硕士研究生200余人；获批浙江省研究生教育创新示范基地1个；浙江省优秀硕士论文2篇；成为研究生电子竞赛华东赛区组长单位。
+                                    在博士生培养方面，通过与浙江大学、西安电子科技大学、四川大学等校联合培养的方式，在建设期内招收博士研究生16人，已毕业博士研究生8人； 与爱尔兰都柏林城市大学开展研究生联合培养，目前已有在读联合培养博士生3人；
+                                    招收攻读硕士学位国际留学生1人、申请攻读博士学位留学生1人。
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">4</td>
+                                <td rowspan="2">条件建设</td>
+                                <td>实验用房</td>
+                                <td></td>
+                                <td>约3000平方米</td>
+                            </tr>
+                            <tr>
+                                <td>研究平台与
+                                    <br/>仪器设备</td>
+                                <td></td>
+                                <td>投入1500余万元</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td colspan="2">学术交流</td>
+                                <td></td>
+                                <td>主办、承办国际国内学术会议10次。 参加国际会议128人次，邀请国内外学者讲学63人次。
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">6</td>
+                                <td rowspan="2">配套支持</td>
+                                <td>建设经费</td>
+                                <td>1000万</td>
+                                <td>约2000万</td>
+                            </tr>
+                            <tr>
+                                <td>运行经费</td>
+                                <td>100万</td>
+                                <td>约100万</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td colspan="2">管理运行</td>
+                                <td>重点与重大项目申请、人才交流和引进、实验用房、工作条件和服务等方面制定专门的倾斜政策。</td>
+                                <td>制定开放基金等制度</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!-- 实验室中长期工作设想-->
+            <section id="s8">
+                <h2>八、实验室中长期工作设想</h2>
+                <p>通过国内外引进和自身培养相结合，进一步加强实验室队伍建设；紧跟学科发展前沿，进一步凝练实验室研究方向，不断提高承担国家和省部级重大项目的能力；提高科学研究水平、学术成果质量，争取在国家级科技奖励有新的突破；积极开展学术交流，加强学术队伍和人才培养的国际化；围绕国家和浙江战略性新兴产业需要，发挥人才和技术优势，建立产学研合作机制，促进技术转移和科技成果转化，为地方经济、社会发展和国防建设服务。</p>
+            </section>
+        </div>
+    </div>
+
+
+
+
+
+
+    <footer>
+        <div id="pre-footer" class="">
+            <div class="container">
+                <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">地址：</h5>
+                        <a>杭州市杭州经济技术开发区白杨街道2号大街1号</a>
+                    </div>
+                </div>
+                <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">邮编：</h5>
+                        <a>310037</a>
+                    </div>
+                </div>
+                <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">电话：</h5>
+                        <a>0571-86919165</a>
+                    </div>
+                </div>
+                <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">友情链接</h5>
+                        <a href="http://elec.hdu.edu.cn/">杭州电子科技大学-电子信息学院</a>
+                    </div>
+                </div>
+                <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">链接表</h5>
+                        <a href="http://webmail.hdu.edu.cn/">杭电邮箱登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <p>© Copyright - <a href="#">杭州电子科技大学微电子CAD研究所 电路与系统实验室</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- 目前最新的jquery是2.1.4, 但是scroll()只在jquery1.0.0 ~ 2.0.0可用，高版本就无效了！坑爹-->
+    <!--<script type="text/javascript" src="JS/jquery-1.11.0.min.js"></script>-->
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/index-extend.css" rel="stylesheet">
+    <script type="text/javascript">
+        $( document ).ready(function( ) {
+//            navbar滚屏后缩小效果
+            $(window).scroll(function(){
+                var scrollH = $(this).scrollTop();
+                $("#test").text("scrollH:" + scrollH);
+                if(scrollH > 0){
+                    $(".navbar-header img").css({
+                        "height": "44px",
+                        "width" : "158px"
+                    });
+                    $(".navbar-menu>li>a").css({
+                        "padding" : "20px 10px 15px 10px"
+                    });
+                }
+                else{
+                    $(".navbar-header img").css({
+                        "height": "88px",
+                        "width" : "300px"
+                    });
+                    $(".navbar-menu>li>a").css({
+                        "padding" : "40px 10px 30px 10px"
+                    });
+                }
+            });
+//            navbar下划线效果,未免动画把这效果覆盖掉，动画中要重复设置
+            $("#nav-text-3").css("border-bottom","2px solid");
+            $("#nav-text-3-2").css("border-left","2px solid");
+            $("nav .navbar-menu>li").hover(function(){
+                $(this).animate({
+//                    设置字体也挺好看的 fontSize : "30px"
+//                    此处坑爹，就animate里没有border之类的方法，只有这种奇葩方法，更奇葩的是
+//                    要想出现下划线，就要设置solid，但动画中又不能设置，只能事先在css里设置好
+                    borderBottomWidth : "2px"
+                },200);
+            },function(){
+                $(this).animate({
+                    borderBottomWidth : "0px"
+                },200,function(){
+                    $("#nav-text-3").css("border-bottom","2px solid");
+                    $("#nav-text-3-2").css("border-left","2px solid");
+                })
+            });
+        });
+    </script>
+
+    <title>微电子CAD研究所 电路与系统实验室</title>
+</head>
+<body data-spy="scroll" data-target="#ex-navbar">
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#">
+                    <img alt="Brand" src="./images/logohdu.jpg">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-top-collapse">
+                <ul class="navbar-menu nav navbar-right navbar-nav">
+                    <li id="nav-text-1"><a href="index.html">首页</a></li>
+                    <li id="nav-text-2"><a href="overview.html">概况</a></li>
+                    <li id="nav-text-3" class="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <a data-target="dropdown">团队</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="./reasearch_team.html">研究队伍</a></li>
+                            <li><a href="./talent.html">人才培养</a></li>
+                            <li><a href="./management.html">运行管理</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-text-4"><a href="./communicate.html">交流</a></li>
+                    <li id="nav-text-5"><a href="./share.html">共享</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+<div class="row container content">
+    <div class="col-md-3" id="ex-navbar">
+        <ul class="nav nav-list" data-spy="affix" data-offset-top="100">
+            <li class="active"><a href="#s1">简述<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="#s2">内引外联<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="#s3">先进设备<span class="glyphicon glyphicon-chevron-right"></span></a> </li>
+            <li><a href="#s4">人才小高地<span class="glyphicon glyphicon-chevron-right"></span></a> </li>
+            <li><a href="#s5">培育人才<span class="glyphicon glyphicon-chevron-right"></span></a> </li>
+            <li><a href="#s6">企业联合<span class="glyphicon glyphicon-chevron-right"></span></a> </li>
+            <li><a href="#s7">奖励基金<span class="glyphicon glyphicon-chevron-right"></span></a> </li>
+            <li><a href="#s8">取得成果<span class="glyphicon glyphicon-chevron-right"></span></a> </li>
+        </ul>
+    </div>
+    <div  class="col-md-8 section">
+        <section id="s1">
+            <h2>一、简述</h2>
+            <p>实验室着重于队伍建设与人才培养，特别是年轻科技人员的培养。采取“请进来、走出去”的措施，一方面邀请国内外知名学者到实验室讲学和短期合作研究，聘请海外归国留学人员和国内外专家作兼职教授；另一方面要利用或创造各种机会，派人出国进行学术交流、技术培训、合作研究和访问学习，使实验室人员及时了解国外最新动态，提高理论和技术水平。同时大胆启用青年科研人员在重点重大项目中承担主要任务，促使他们尽快成长。具体措施如下：</p>
+        </section>
+        <section id="s2">
+            <h2>二、内引外联</h2>
+            <p>加强内引外联：设立人才引进基金，吸引国内院士，国家杰出青年基金获得者，国际上著名学者前来实验室进行短期合作研究(如每年前来实验室工作3个月)；或直接引进海外学成归来的优秀中青年学者，国家杰出青年基金获得者来实验室工作。加强对外合作与交流，每年有计划派送实验室的学术带头人或学术骨干前往欧美发达国家学习进修、考察或进行合作研究，或送派青年教师攻读博士学位。两年内引进1-2位本学科领域的学术带头人和2-3位上述领域的学术骨干（依托单位在实验设备，场地和人员配置主要是研究生额度予以充分保障）。</p>
+        </section>
+        <section id="s3">
+            <h2>三、先进设备</h2>
+            <p>从学科建设和主管部门下拨经费中安排相当一部分资金，重点改善实验室试验设备和相关软件，力争实验室的装备条件达到或接近当时的国际先进水平，创造多渠道培训技术人才机会，并通过短期合作研究项目，引进或培养高级技术人才，以利于实验室重大仪器的高效运转。</p>
+        </section>
+        <section id="s4">
+            <h2>四、人才小高地</h2>
+            <p>充分利用人才小高地特殊优惠政策，设立重点实验室的人才特区，加强辅助人才工作和生活的各项措施，改善重点实验室工作人员的生活办公条件，稳定队伍。</p>
+        </section>
+        <section id="s5">
+            <h2>五、培育人才</h2>
+            <p>加强学科建设，培养高水平的博士、硕士。建立人才培育基金或通过长期资助重点项目的方法，在职培养高水平的专业技术人员，以实验室的建设和发展为中心，培养高水平学科和学术带头人。</p>
+        </section>
+        <section id="s6">
+            <h2>六、企业联合</h2>
+            <p>与高新企业和相关研究所联合攻关，开发新型的器件、集成电路系统以及应用电子系统，并及时实现产业化。通过合作研究，提高开发项目整体水平，提高产品的高附加值，实现实验室和企业双赢，在科学先进的合作机制中体现实验室工作人员自身价值。</p>
+        </section>
+        <section id="s7">
+            <h2>七、奖励基金</h2>
+            <p>设立奖励基金，引进竞争奖励机制，促进产生高水平成果。对承担国家级科研项目,获得国家级、省部级科研奖励的研究人员进行相应的科研补贴或奖励，提高成果转化收益的提成，促进科研人员承担横向项目，鼓励研究人员与企业联合从事开发项目。实验室从建设经费中安排一项专门基金(每年约20万)，资助学术带头人，学术骨干和优秀年青学者出国参加学术会议，访问进修和短期科研合作。</p>
+        </section>
+        <section id="s8">
+            <h2>八、取得成果</h2>
+            <p>在重点实验室建设支持下，队伍梯队得到快速壮大，吸引了一批国内外学者、著名高校博士加盟。经过建设，学科队伍发生了根本变化，标志性人才有了突破，团队建设取得成绩。主要成绩如下：</p><br/>
+            <table class="table table-hover">
+                <tbody>
+                <tr class="info">
+                    <td width="60px">日期</td>
+                    <td>成绩</td>
+                </tr>
+                <tr>
+                    <td>2013年</td>
+                    <td>实验室成员作为负责人和骨干参与并成功申报了国家虚拟仿真实验示范中心（已结束公示），实验室在学科梯队建设、人才培养方面发挥了重要作用。</td>
+                </tr>
+                <tr>
+                    <td>2013年</td>
+                    <td>“智能识别关键技术与应用”入选浙江省重点科技创新团队；</td>
+                </tr>
+                <tr>
+                    <td>2010年</td>
+                    <td>“智能识别关键技术与应用”入选浙江省重点科技创新团队；</td>
+                </tr>
+                <tr>
+                    <td>2009年</td>
+                    <td>“磁电子材料和器件”团队入选省教育厅高校创新团队；</td>
+                </tr>
+                <tr>
+                    <td>2009年</td>
+                    <td>“在线检测”团队入选省教育厅高校创新团队；</td>
+                </tr>
+                <tr>
+                    <td>2009年</td>
+                    <td>“电工电子实验教学”团队入选国家级教学团队。</td>
+                </tr>
+                <tr>
+                    <td>2008年</td>
+                    <td>“射频电路与系统”国防科技创新团队；</td>
+                </tr>
+                <tr>
+                    <td>2008年</td>
+                    <td>硕士研究生年招生100余人，建设期内累计毕业硕士研究生300余人，其中获省优秀毕业生11人。研究生报考率高，就业率达100%；目前在读硕士研究生500余人。在建设期内，获批浙江省研究生教育创新示范基地1个。学校作为研究生电子竞赛华东赛区组长单位，实验室成员也发挥了重要作用。</td>
+                </tr>
+                <tr>
+                    <td>2008年</td>
+                    <td>在博士生培养方面，通过与浙江大学、四川大学等校联合培养的方式，在建设期内招收博士研究生16人，已毕业博士研究生8人。</td>
+                </tr>
+                <tr>
+                    <td>2008年</td>
+                    <td>研究生培养开始走向国际化，与爱尔兰都柏林城市大学开展研究生联合培养，目前已有在读联合培养博士生3人；招收攻读硕士学位国际留学生1人、申请攻读博士学位留学生1人。已有多名研究生出国参加国际合作或国际学术会议</td>
+                </tr>
+                <tr>
+                    <td>2008年</td>
+                    <td>研究生在校期间积极参与各种科研项目，参与申报知识产权，发挥了很大的作用，成为国家级和省部级科研项目的主力军。2009年博士研究生获国家科技进步二等奖（排名第四）。研究生参加了双服务，为衢州等地企业排忧解难，成为技术“顾问”，有的研究生开发的产品已推向国际市场。研究生创业热情高，有的毕业即创业。</td>
+                </tr>
+                <tr>
+                    <td>2008年</td>
+                    <td>重点实验室鼓励研究生参加国际、国内的学术会议，并给予一定的支持。研究生发表的学术论文比例逐年增长，论文的层次和水平也逐年提高，近几年一级期刊发表论文并被三大检索收录多篇。如有研究生在读期间在国际权威学术刊物IEEE Electron Device Letters、MTT和 IEEE IMS、CICC、ISCAS及RFIC等学科高层次国际会议上发表论文。</td>
+                </tr>
+                </tbody>
+            </table>
+            <p></p>
+            <!--<p>硕士研究生年招生100余人，建设期内累计毕业硕士研究生300余人，其中获省优秀毕业生11人。研究生报考率高，就业率达100%；目前在读硕士研究生500余人。在建设期内，获批浙江省研究生教育创新示范基地1个。学校作为研究生电子竞赛华东赛区组长单位，实验室成员也发挥了重要作用。</p>-->
+            <!--<p>在博士生培养方面，通过与浙江大学、四川大学等校联合培养的方式，在建设期内招收博士研究生16人，已毕业博士研究生8人。</p>-->
+            <!--<p>研究生培养开始走向国际化，与爱尔兰都柏林城市大学开展研究生联合培养，目前已有在读联合培养博士生3人；招收攻读硕士学位国际留学生1人、申请攻读博士学位留学生1人。已有多名研究生出国参加国际合作或国际学术会议。</p>-->
+            <!--<p>研究生在校期间积极参与各种科研项目，参与申报知识产权，发挥了很大的作用，成为国家级和省部级科研项目的主力军。2009年博士研究生获国家科技进步二等奖（排名第四）。研究生参加了双服务，为衢州等地企业排忧解难，成为技术“顾问”，有的研究生开发的产品已推向国际市场。研究生创业热情高，有的毕业即创业。</p>-->
+            <!--<p>重点实验室鼓励研究生参加国际、国内的学术会议，并给予一定的支持。研究生发表的学术论文比例逐年增长，论文的层次和水平也逐年提高，近几年一级期刊发表论文并被三大检索收录多篇。如有研究生在读期间在国际权威学术刊物IEEE Electron Device Letters、MTT和 IEEE IMS、CICC、ISCAS及RFIC等学科高层次国际会议上发表论文。</p>-->
+        </section>
+    </div>
+</div>
+
+
+<footer>
+    <div id="pre-footer">
+        <div class="container">
+            <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">地址：</h5>
+                        <a>杭州市杭州经济技术开发区白杨街道2号大街1号</a>
+                    </div>
+                </div>
+                <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">邮编：</h5>
+                        <a>310037</a>
+                    </div>
+                </div>
+                <div class="row footer-content">
+                    <div class="col-md-3">
+                        <h5 class="footer-h5">电话：</h5>
+                        <a>0571-86919165</a>
+                    </div>
+                </div>
+            <div class="row footer-content">
+                <div class="col-md-3">
+                    <h5 class="footer-h5">友情链接</h5>
+                    <a href="http://elec.hdu.edu.cn/">杭州电子科技大学-电子信息学院</a>
+                </div>
+            </div>
+            <div class="row footer-content">
+                <div class="col-md-3">
+                    <h5 class="footer-h5">链接表</h5>
+                    <a href="http://webmail.hdu.edu.cn/">杭电邮箱登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p>© Copyright - <a href="#">杭州电子科技大学微电子CAD研究所 电路与系统实验室</a></p>
+    </div>
+</footer>
+</body>
+</html>
